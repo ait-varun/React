@@ -3,12 +3,13 @@ import TodoList from "../../components/common/todoList";
 
 export default function About() {
   const inputRef = useRef(null);
+  const [isEditing, setisEditing] = useState(null);
   const [tasks, setTasks] = useState({
     Todo: [],
     Progress: [],
     Completed: [],
   });
-  const [task, setTask] = useState("Todo");
+  const [status, setStatus] = useState("Todo");
 
   const taskOptions = useMemo(() => {
     return Object.keys(tasks).map((key) => ({
@@ -21,26 +22,40 @@ export default function About() {
     const newTask = {
       id: self.crypto.randomUUID(),
       task: inputRef.current.value,
-      status: task,
+      status: status,
     };
-    setTasks((prev) => ({
-      ...prev,
-      [task]: [...prev[task], newTask],
-    }));
+    if (!isEditing) {
+      setTasks((prev) => ({
+        ...prev,
+        [status]: [...prev[status], newTask],
+      }));
+    } else {
+      setTasks((prev) => ({
+        ...prev,
+        [status]: [...prev[status], newTask],
+      }));
+    }
+
     inputRef.current.value = "";
   };
 
   const handleDeleteTask = (id) => {
     setTasks((prev) => ({
       ...prev,
-      [task]: prev[task].filter((task) => task.id !== id),
+      [status]: prev[status].filter((task) => task.id !== id),
     }));
   };
 
-  const handleEditTask = (task) => {
-    console.log(task);
+  const handleEditTask = (editTask) => {
+    console.log(editTask);
+    setisEditing(editTask);
     inputRef.current.focus();
-    inputRef.current.value = task.task;
+    inputRef.current.value = editTask.task;
+    console.log(status);
+    setTasks((prev) => ({
+      ...prev,
+      [status]: prev[status].filter((task) => editTask.id !== task.id),
+    }));
   };
 
   return (
@@ -57,9 +72,9 @@ export default function About() {
           className="border-2 border-black rounded-lg px-2"
           name="task"
           id="task"
-          defaultValue={task}
+          defaultValue={status}
           onChange={(e) => {
-            setTask(e.target.value);
+            setStatus(e.target.value);
             inputRef.current.value = "";
           }}>
           {taskOptions.map((option) => (
@@ -75,8 +90,8 @@ export default function About() {
         </button>
       </div>
       <TodoList
-        tasks={tasks[task]}
-        status={task}
+        tasks={tasks[status]}
+        status={status}
         deleteTask={handleDeleteTask}
         editTask={handleEditTask}
       />
