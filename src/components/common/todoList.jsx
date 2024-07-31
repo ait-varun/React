@@ -5,7 +5,7 @@ export default function TodoList({ tasks, status }) {
   return (
     <>
       <div>
-        <h1>{status} List</h1>
+        <h1 className="">{status} List</h1>
         <ul>
           {tasks.map((task, index) => (
             <li key={index}>{task.task}</li>
