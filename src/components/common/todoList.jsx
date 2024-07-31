@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function TodoList({ tasks, status, deleteTask }) {
+export default function TodoList({ tasks, status, deleteTask, editTask }) {
   // console.log(tasks);
   return (
     <>
@@ -14,6 +14,11 @@ export default function TodoList({ tasks, status, deleteTask }) {
               {tasks.map((task) => (
                 <li key={task.id}>
                   {task.task}
+                  <button
+                    className="ml-2 border-2 border-green-600 rounded-full px-2 py-1"
+                    onClick={() => editTask(task)}>
+                    Edit
+                  </button>
                   <button
                     className="ml-2 border-2 border-red-600 rounded-full px-2 py-1"
                     onClick={() => deleteTask(task.id)}>
@@ -41,4 +46,5 @@ TodoList.propTypes = {
   ),
   status: PropTypes.string.isRequired,
   deleteTask: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
 };

@@ -37,6 +37,12 @@ export default function About() {
     }));
   };
 
+  const handleEditTask = (task) => {
+    console.log(task);
+    inputRef.current.focus();
+    inputRef.current.value = task.task;
+  };
+
   return (
     <div>
       <h1>About</h1>
@@ -52,7 +58,10 @@ export default function About() {
           name="task"
           id="task"
           defaultValue={task}
-          onChange={(e) => setTask(e.target.value)}>
+          onChange={(e) => {
+            setTask(e.target.value);
+            inputRef.current.value = "";
+          }}>
           {taskOptions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -69,6 +78,7 @@ export default function About() {
         tasks={tasks[task]}
         status={task}
         deleteTask={handleDeleteTask}
+        editTask={handleEditTask}
       />
     </div>
   );
