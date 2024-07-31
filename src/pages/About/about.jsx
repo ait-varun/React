@@ -1,13 +1,16 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import TodoList from "../../components/common/todoList";
 
 export default function About() {
   const inputRef = useRef(null);
   const [isEditing, setisEditing] = useState(null);
-  const [tasks, setTasks] = useState({
-    Todo: [],
-    Progress: [],
-    Completed: [],
+  const [tasks, setTasks] = useState(() => {
+    // This function runs only on initial render
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    }
+    return [];
   });
   const [status, setStatus] = useState("Todo");
 
@@ -63,6 +66,10 @@ export default function About() {
   const handleCategoryChange = (e) => {
     setStatus(e.target.value);
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <>
