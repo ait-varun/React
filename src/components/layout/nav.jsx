@@ -17,6 +17,13 @@ export default function Nav() {
         }>
         About
       </Link>
+      <Link
+        to="/contact"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active" : ""
+        }>
+        Contact
+      </Link>
     </nav>
   );
 }
