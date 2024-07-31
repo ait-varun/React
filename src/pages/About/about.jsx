@@ -1,17 +1,9 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import TodoList from "../../components/common/todoList";
 
 export default function About() {
   const inputRef = useRef(null);
   const [isEditing, setisEditing] = useState(null);
-  // const [tasks, setTasks] = useState(() => {
-  //   // This function runs only on initial render
-  //   const savedTodos = localStorage.getItem("todos");
-  //   if (savedTodos) {
-  //     return JSON.parse(savedTodos);
-  //   }
-  //   return [];
-  // });
 
   const [tasks, setTasks] = useState({
     Todo: [],
@@ -73,9 +65,18 @@ export default function About() {
     setStatus(e.target.value);
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem("todos", JSON.stringify(tasks));
-  // }, [tasks]);
+  // Load TODOs from local storage on app startup
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    if (storedTodos) {
+      setTasks(storedTodos);
+    }
+  }, []);
+
+  // Update local storage whenever TODOs change
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <>
