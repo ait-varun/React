@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useMemo, useRef, useEffect } from "react";
 import TodoList from "../../components/common/todoList";
 
