@@ -61,7 +61,6 @@ export default function About() {
 
   const handleCategoryChange = (e) => {
     setStatus(e.target.value);
-    inputRef.current.value = "";
   };
 
   return (
