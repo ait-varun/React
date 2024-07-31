@@ -1,47 +1,22 @@
+import { NavLink as Link } from "react-router-dom";
+
 export default function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <a className="navbar-brand" href="/">
-          <img
-            src="/src/assets/react.svg"
-            alt="logo"
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />
-          <span className="text-dark">React</span>
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/about">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/contact">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <nav className="flex items-center gap-6 flex-wrap bg-teal-500 p-6">
+      <Link
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active" : ""
+        }>
+        Home
+      </Link>
+      <Link
+        to="/about"
+        className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active" : ""
+        }>
+        About
+      </Link>
     </nav>
   );
 }
