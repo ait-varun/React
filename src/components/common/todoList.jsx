@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 export default function TodoList({ tasks, status }) {
+  // console.log(tasks);
   return (
     <>
       <div>
