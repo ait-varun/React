@@ -30,6 +30,13 @@ export default function About() {
     inputRef.current.value = "";
   };
 
+  const handleDeleteTask = (id) => {
+    setTasks((prev) => ({
+      ...prev,
+      [task]: prev[task].filter((task) => task.id !== id),
+    }));
+  };
+
   return (
     <div>
       <h1>About</h1>
@@ -58,7 +65,11 @@ export default function About() {
           Add Task
         </button>
       </div>
-      <TodoList tasks={tasks[task]} status={task} />
+      <TodoList
+        tasks={tasks[task]}
+        status={task}
+        deleteTask={handleDeleteTask}
+      />
     </div>
   );
 }
