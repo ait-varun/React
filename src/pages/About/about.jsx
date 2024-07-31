@@ -36,6 +36,7 @@ export default function About() {
       }));
     }
 
+    setisEditing(null);
     inputRef.current.value = "";
   };
 
@@ -58,43 +59,49 @@ export default function About() {
     }));
   };
 
+  const handleCategoryChange = (e) => {
+    setStatus(e.target.value);
+    inputRef.current.value = "";
+  };
+
   return (
-    <div>
-      <h1>About</h1>
-      <div className="flex flex-row gap-4">
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Add a task"
-          className="border-2 border-black rounded-lg px-2"
+    <>
+      <div className="max-w-2xl mx-auto p-6">
+        <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
+          TODO LIST
+        </h1>
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Add a task"
+            className="flex-grow border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
+          />
+          <select
+            className="border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
+            name="task"
+            id="task"
+            defaultValue={status}
+            onChange={handleCategoryChange}>
+            {taskOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out"
+            onClick={handleAddTask}>
+            {isEditing ? "Save" : "Add Task"}
+          </button>
+        </div>
+        <TodoList
+          tasks={tasks[status]}
+          status={status}
+          deleteTask={handleDeleteTask}
+          editTask={handleEditTask}
         />
-        <select
-          className="border-2 border-black rounded-lg px-2"
-          name="task"
-          id="task"
-          defaultValue={status}
-          onChange={(e) => {
-            setStatus(e.target.value);
-            inputRef.current.value = "";
-          }}>
-          {taskOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleAddTask}>
-          Add Task
-        </button>
       </div>
-      <TodoList
-        tasks={tasks[status]}
-        status={status}
-        deleteTask={handleDeleteTask}
-        editTask={handleEditTask}
-      />
-    </div>
+    </>
   );
 }

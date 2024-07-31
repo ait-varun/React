@@ -4,35 +4,35 @@ export default function TodoList({ tasks, status, deleteTask, editTask }) {
   // console.log(tasks);
   return (
     <>
-      <div>
-        <h1 className="text-xl border-b-2 border-gray-200 pb-2">
+      <div className="bg-white shadow-md rounded-lg p-6">
+        <h2 className="text-2xl font-semibold mb-4 pb-2 border-b-2 border-gray-200">
           {status} List
-        </h1>
-        <ul>
-          {tasks.length ? (
-            <>
-              {tasks.map((task) => (
-                <li key={task.id}>
-                  {task.task}
+        </h2>
+        {tasks.length ? (
+          <ul className="space-y-4">
+            {tasks.map((task) => (
+              <li
+                key={task.id}
+                className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
+                <span className="text-gray-800">{task.task}</span>
+                <div className="space-x-2">
                   <button
-                    className="ml-2 border-2 border-green-600 rounded-full px-2 py-1"
+                    className="px-3 py-1 text-sm font-medium text-green-600 border border-green-600 rounded-full hover:bg-green-50 transition duration-300 ease-in-out"
                     onClick={() => editTask(task)}>
                     Edit
                   </button>
                   <button
-                    className="ml-2 border-2 border-red-600 rounded-full px-2 py-1"
+                    className="px-3 py-1 text-sm font-medium text-red-600 border border-red-600 rounded-full hover:bg-red-50 transition duration-300 ease-in-out"
                     onClick={() => deleteTask(task.id)}>
                     Delete
                   </button>
-                </li>
-              ))}
-            </>
-          ) : (
-            <>
-              <span className="text-red-600">No {status} tasks</span>
-            </>
-          )}
-        </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-red-600 text-center py-4">No {status} tasks</p>
+        )}
       </div>
     </>
   );
