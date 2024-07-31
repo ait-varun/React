@@ -1,82 +1,78 @@
-// import { useState, useMemo, useRef, useEffect } from "react";
-// import TodoList from "../../components/common/todoList";
+import { useState, useMemo, useRef, useEffect } from "react";
+import TodoList from "../../components/common/todoList";
 
 export default function About() {
-  // const inputRef = useRef(null);
-  // const [isEditing, setisEditing] = useState(null);
-  // const [tasks, setTasks] = useState(() => {
-  //   // This function runs only on initial render
-  //   const savedTodos = localStorage.getItem("todos");
-  //   if (savedTodos) {
-  //     return JSON.parse(savedTodos);
-  //   }
-  //   return [];
-  // });
-  // const [status, setStatus] = useState("Todo");
+  const inputRef = useRef(null);
+  const [isEditing, setisEditing] = useState(null);
+  const [tasks, setTasks] = useState(() => {
+    // This function runs only on initial render
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    }
+    return [];
+  });
+  const [status, setStatus] = useState("Todo");
 
-  // const taskOptions = useMemo(() => {
-  //   return Object.keys(tasks).map((key) => ({
-  //     value: key,
-  //     label: key,
-  //   }));
-  // }, [tasks]);
+  const taskOptions = useMemo(() => {
+    return Object.keys(tasks).map((key) => ({
+      value: key,
+      label: key,
+    }));
+  }, [tasks]);
 
-  // const handleAddTask = () => {
-  //   const newTask = {
-  //     id: self.crypto.randomUUID(),
-  //     task: inputRef.current.value,
-  //     status: status,
-  //   };
-  //   if (!isEditing) {
-  //     setTasks((prev) => ({
-  //       ...prev,
-  //       [status]: [...prev[status], newTask],
-  //     }));
-  //   } else {
-  //     setTasks((prev) => ({
-  //       ...prev,
-  //       [status]: [...prev[status], newTask],
-  //     }));
-  //   }
+  const handleAddTask = () => {
+    const newTask = {
+      id: self.crypto.randomUUID(),
+      task: inputRef.current.value,
+      status: status,
+    };
+    if (!isEditing) {
+      setTasks((prev) => ({
+        ...prev,
+        [status]: [...prev[status], newTask],
+      }));
+    } else {
+      setTasks((prev) => ({
+        ...prev,
+        [status]: [...prev[status], newTask],
+      }));
+    }
 
-  //   setisEditing(null);
-  //   inputRef.current.value = "";
-  // };
+    setisEditing(null);
+    inputRef.current.value = "";
+  };
 
-  // const handleDeleteTask = (id) => {
-  //   setTasks((prev) => ({
-  //     ...prev,
-  //     [status]: prev[status].filter((task) => task.id !== id),
-  //   }));
-  // };
+  const handleDeleteTask = (id) => {
+    setTasks((prev) => ({
+      ...prev,
+      [status]: prev[status].filter((task) => task.id !== id),
+    }));
+  };
 
-  // const handleEditTask = (editTask) => {
-  //   // console.log(editTask);
-  //   setisEditing(editTask);
-  //   inputRef.current.focus();
-  //   inputRef.current.value = editTask.task;
-  //   console.log(status);
-  //   setTasks((prev) => ({
-  //     ...prev,
-  //     [status]: prev[status].filter((task) => editTask.id !== task.id),
-  //   }));
-  // };
+  const handleEditTask = (editTask) => {
+    // console.log(editTask);
+    setisEditing(editTask);
+    inputRef.current.focus();
+    inputRef.current.value = editTask.task;
+    console.log(status);
+    setTasks((prev) => ({
+      ...prev,
+      [status]: prev[status].filter((task) => editTask.id !== task.id),
+    }));
+  };
 
-  // const handleCategoryChange = (e) => {
-  //   setStatus(e.target.value);
-  // };
+  const handleCategoryChange = (e) => {
+    setStatus(e.target.value);
+  };
 
-  // useEffect(() => {
-  //   localStorage.setItem("todos", JSON.stringify(tasks));
-  // }, [tasks]);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <>
-      <div>
-        {" "}
-        <h1>ABout</h1>
-      </div>
-      {/* <div className="max-w-2xl mx-auto p-6">
+      <div className="max-w-2xl mx-auto p-6">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
           TODO LIST
         </h1>
@@ -111,7 +107,7 @@ export default function About() {
           deleteTask={handleDeleteTask}
           editTask={handleEditTask}
         />
-      </div> */}
+      </div>
     </>
   );
 }
