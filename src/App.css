@@ -1,9 +1,5 @@
 /* navbar */
 
-nav a .pending {
-  color: rgb(146, 146, 146);
-}
-
 nav a {
   font-weight: 500;
   color: white;
@@ -28,10 +24,10 @@ nav a:hover::after,
   transform: scaleX(1);
 }
 
-nav a .pending {
+nav a.pending {
   color: rgb(146, 146, 146);
 }
 
-nav a .active {
+nav a.active {
   color: rgb(0, 0, 0);
 }
