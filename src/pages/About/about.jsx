@@ -55,7 +55,7 @@ export default function About() {
     setisEditing(editTask);
     inputRef.current.focus();
     inputRef.current.value = editTask.task;
-    console.log(status);
+    // console.log(status);
     setTasks((prev) => ({
       ...prev,
       [status]: prev[status].filter((task) => editTask.id !== task.id),
