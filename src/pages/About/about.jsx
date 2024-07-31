@@ -21,6 +21,7 @@ export default function About() {
 
   const handleAddTask = (e) => {
     e.preventDefault();
+    if (inputRef.current.value.trim() === "") return;
     const newTask = {
       id: self.crypto.randomUUID(),
       task: inputRef.current.value,
