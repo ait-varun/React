@@ -6,7 +6,7 @@ export default function TodoList({ tasks, status, deleteTask, editTask }) {
     <>
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-semibold mb-4 pb-2 border-b-2 border-gray-200">
-          {status} List
+          {status}
         </h2>
         {tasks.length ? (
           <ul className="space-y-4">
