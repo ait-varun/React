@@ -1,14 +1,25 @@
 import PropTypes from "prop-types";
 
-export default function TodoList() {
-  return <></>;
+export default function TodoList({ tasks, status }) {
+  return (
+    <>
+      <div>
+        <h1>{status} List</h1>
+        <ul>
+          {tasks.map((task, index) => (
+            <li key={index}>{task.task}</li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
 }
 
 TodoList.propTypes = {
-  taskOptions: PropTypes.arrayOf(
+  tasks: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
+      task: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
+  status: PropTypes.string.isRequired,
 };
