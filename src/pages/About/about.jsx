@@ -4,27 +4,9 @@ import TodoList from "../../components/common/todoList";
 export default function About() {
   const inputRef = useRef(null);
   const [tasks, setTasks] = useState({
-    Todo: [
-      {
-        id: 1,
-        task: "Learn React",
-        status: "Todo",
-      },
-    ],
-    Progress: [
-      {
-        id: 2,
-        task: "Learn Progess",
-        status: "In Progress",
-      },
-    ],
-    Completed: [
-      {
-        id: 3,
-        task: "Learn Completed",
-        status: "Completed",
-      },
-    ],
+    Todo: [],
+    Progress: [],
+    Completed: [],
   });
   const [task, setTask] = useState("Todo");
 
