@@ -21,8 +21,7 @@ export default function About() {
     }));
   }, [tasks]);
 
-  const handleAddTask = (e) => {
-    e.preventDefault();
+  const handleAddTask = () => {
     const newTask = {
       id: self.crypto.randomUUID(),
       task: inputRef.current.value,
@@ -77,9 +76,7 @@ export default function About() {
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
           TODO LIST
         </h1>
-        <form
-          className="flex flex-col sm:flex-row gap-4 mb-8"
-          onSubmit={handleAddTask}>
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <input
             ref={inputRef}
             type="text"
@@ -103,7 +100,7 @@ export default function About() {
             onClick={handleAddTask}>
             {isEditing ? "Save" : "Add Task"}
           </button>
-        </form>
+        </div>
         <TodoList
           tasks={tasks[status]}
           status={status}
