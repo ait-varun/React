@@ -34,7 +34,9 @@ export default function Nav() {
           isOpen ? "block" : "hidden"
         } md:flex md:items-center md:w-auto w-full mt-4 md:mt-0`}>
         <div className="md:flex-grow">
-          <span className="text-white font-bold mr-4">Your Logo</span>
+          <span className="text-white font-bold mr-4 hidden md:inline-block">
+            Your Logo
+          </span>
           <Link
             to="/"
             className={({ isActive, isPending }) =>
