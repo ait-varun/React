@@ -85,11 +85,21 @@ export default function Nav() {
               to="/contact"
               onClick={closeMenu}
               className={({ isActive, isPending }) =>
-                `block mt-4 md:inline-block md:mt-0 text-white hover:text-white ${
+                `block mt-4 md:inline-block md:mt-0 text-white hover:text-white mr-4 ${
                   isPending ? "pending" : isActive ? "active" : ""
                 }`
               }>
               Contact
+            </Link>
+            <Link
+              to="/blog"
+              onClick={closeMenu}
+              className={({ isActive, isPending }) =>
+                `block mt-4 md:inline-block md:mt-0 text-white hover:text-white ${
+                  isPending ? "pending" : isActive ? "active" : ""
+                }`
+              }>
+              Blog
             </Link>
           </div>
           <div className="mt-4 md:mt-0">
