@@ -114,7 +114,7 @@ export default function About() {
         </form>
         <TodoList
           tasks={tasks[status]}
-          status={status}
+          status
           deleteTask={handleDeleteTask}
           editTask={handleEditTask}
         />
