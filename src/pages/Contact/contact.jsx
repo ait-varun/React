@@ -31,7 +31,9 @@ export default function Contact() {
     <>
       <h1>Contact</h1>
       <p>You clicked {counter} times</p>
-      <button onClick={addCounter}>Click me</button>
+      <button className="btn btn-primary bg-blue-600" onClick={addCounter}>
+        Click me
+      </button>
       <div>
         <ul>
           {users.length ? (
